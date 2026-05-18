@@ -27,8 +27,8 @@
         <!-- 期限 -->
         <div class="form-group">
             <label for="due_date">期限</label>
-            <input id="due_date" type="date" name="due_date"
-                   value="{{ old('due_date', $task->due_date) }}" class="input">
+            <input id="due_date" type="datetime_local" name="due_date"
+                   value="{{ old('due_date', optional($task->due_date)->format('Y-m-d\TH:i')) }}" class="input">
         </div>
 
         <!-- 進捗 -->

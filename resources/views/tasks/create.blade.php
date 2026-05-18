@@ -25,7 +25,10 @@
         <!-- 期限 -->
         <div class="form-group">
             <label for="due_date">期限</label>
-            <input id="due_date" type="date" name="due_date" value="{{ old('due_date') }}" class="input">
+            <input id="due_date" 
+            type="datetime-local"
+             name="due_date" 
+             value="{{ old('due_date') }}" class="input">
         </div>
 
         <!-- 進捗 -->
