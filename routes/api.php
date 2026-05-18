@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Api\TaskController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -14,13 +14,12 @@ Route::get('/users', [AuthController::class, 'show']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group(function () {
-
-    Route::post('/logout', [AuthController::class, 'logout']);
-
-    Route::get('/user', function (Request $request) {
-        return $request->user();
+Route::middleware('auth:sanctum')
+    ->name('api.')
+    ->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::get('/user', function (Request $request) {
+            return $request->user();
+        });
+        Route::apiResource('tasks', TaskController::class);
     });
-
-    Route::apiResource('tasks', TaskController::class);
-});
