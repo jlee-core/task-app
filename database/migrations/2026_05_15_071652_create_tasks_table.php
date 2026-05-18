@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
 
-            $table->date('due_date')->nullable();
+            $table->dateTime('due_date')->nullable();
 
             $table->enum('status', ['todo', 'doing', 'done'])
                 ->default('todo');
