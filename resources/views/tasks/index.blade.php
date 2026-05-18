@@ -16,6 +16,13 @@
             <p class="task-meta">
                 {{ $task->status->label() }}
             </p>
+        <div>
+            <a href="{{ route('tasks.edit', $task) }}">編集</a>
+            <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete__button">
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+            </form>
+        </div>
         </li>
         @endforeach
     </ul>

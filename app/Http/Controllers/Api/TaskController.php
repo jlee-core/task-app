@@ -8,7 +8,8 @@ use App\Http\Resources\TaskResource;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\StoreTaskRequest;
 use Illuminate\Http\Request;
-
+use App\Models\Task;
+use App\Http\Requests\UpdateTaskRequest;
 class TaskController extends Controller
 {
     public function __construct(
@@ -24,6 +25,11 @@ class TaskController extends Controller
         return TaskResource::collection($tasks);
     }
 
+    public function show(Task $task): TaskResource
+    {
+        return new TaskResource($task);
+    }
+
     public function store(StoreTaskRequest $request)
     {
         $task = $this->taskService->store(
@@ -33,6 +39,16 @@ class TaskController extends Controller
 
         return response()->json([
             'task' => $task,
+        ]);
+    }
+
+    public function update(UpdateTaskRequest $request, Task $task)
+    {
+        $task->update($request->validated());
+
+        return response()->json([
+            'message' => 'updated',
+            'data' => $task
         ]);
     }
 }
