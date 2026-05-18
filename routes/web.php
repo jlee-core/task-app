@@ -14,6 +14,7 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::resource('tasks', TaskController::class)
-    ->middleware('auth');
-    
+    ->middleware('auth')
+    ->except(['show']);
+
 require __DIR__ . '/auth.php';
