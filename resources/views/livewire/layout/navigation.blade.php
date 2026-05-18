@@ -29,9 +29,24 @@ new class extends Component
                 </div>
 
                 <!-- Navigation Links -->
+                <!-- Dashbord Link -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- タスク一覧 Link -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')" wire:navigate>
+                        {{ __('タスク一覧') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- タスク追加 Link -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('tasks.create')" :active="request()->routeIs('tasks.create')" wire:navigate>
+                        {{ __('タスク追加') }}
                     </x-nav-link>
                 </div>
             </div>
