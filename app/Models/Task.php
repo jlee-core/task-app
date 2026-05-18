@@ -9,7 +9,7 @@ use App\Enums\TaskStatus;
 class Task extends Model
 {
     protected $fillable = [
-        'titile',
+        'title',
         'description',
         'due_date',
         'status',
@@ -17,6 +17,7 @@ class Task extends Model
     
     protected $casts = [
         'status' => TaskStatus::class,
+        'due_date' => 'datetime',
     ];
 
     public function user(): BelongsTo
