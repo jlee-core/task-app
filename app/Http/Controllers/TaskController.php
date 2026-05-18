@@ -24,6 +24,12 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks'));
     }
 
+
+    public function create()
+    {
+         return view('tasks.create');
+    }
+
     public function store(StoreTaskRequest $request)
     {
         $task = $this->taskService->store(
@@ -31,9 +37,7 @@ class TaskController extends Controller
             $request->validated()
         );
 
-        return response()->json([
-            'task' => $task,
-        ]);
+        return redirect()->route('tasks.index');
     }
 
     public function update() {}
