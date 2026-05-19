@@ -7,7 +7,7 @@
     <div class="user-list">
         @foreach ($users as $user)
         <a
-            href="{{ route('admin.users.tasks', $user) }}"
+            href="{{ route('admin.search', ['user' => $user->id]) }}"
             class="user-card-link">
             <div class="user-card">
 
