@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
+
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
@@ -23,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'last_seen_at',
     ];
 
     protected $hidden = [
@@ -35,10 +37,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'boolean',
+            'last_seen_at' => 'datetime',
         ];
     }
 
-    public function tasks(): HasMany {
+    public function tasks(): HasMany
+    {
         return $this->hasMany(Task::class);
+    }
+
+    public function getIsOnlineAttribute(): bool
+    {
+        return $this->last_seen_at &&
+            $this->last_seen_at->gt(now()->subMinutes(5));
     }
 }
