@@ -13,6 +13,16 @@ class UserSearch extends Component
 
     public bool $showResults = false;
 
+    public function mount(): void
+    {
+        $userId = request()->query('user');
+
+        if ($userId) {
+            $this->selectedUser = User::with('tasks')
+                ->find($userId);
+        }
+    }
+    
     public function updatedKeyword(): void
     {
         $this->showResults = true;

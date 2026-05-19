@@ -27,35 +27,10 @@
     {{-- task一覧 --}}
     @if($selectedUser)
 
-    <div class="task-section">
-
-        <h2>
-            {{ $selectedUser->name }} のタスク一覧
-        </h2>
-
-        @forelse ($selectedUser->tasks as $task)
-
-        <div class="task-card">
-
-            <h3>
-                {{ $task->title }}
-            </h3>
-
-            <p>
-                {{ $task->description }}
-            </p>
-
-        </div>
-
-        @empty
-
-        <p>
-            タスクがありません。
-        </p>
-
-        @endforelse
-
-    </div>
+    @include('livewire.admin.partials.task-list', [
+    'user' => $selectedUser,
+    'tasks' => $selectedUser->tasks,
+    ])
 
     @endif
 
