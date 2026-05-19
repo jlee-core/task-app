@@ -12,12 +12,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
-
-    Route::get('/admin/search', [AdminSearchController::class, 'index'])
+        
+    Route::view('/admin/search', 'admin.search')
         ->name('admin.search');
-
-    Route::post('/admin/search', [AdminSearchController::class, 'search'])
-        ->name('admin.search.submit');
 
     Route::get('/users/{user}/tasks', [AdminTaskController::class, 'index'])
         ->name('admin.users.tasks');
