@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureNotAdmin;
 use App\Http\Middleware\UpdateUserLastSeen;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -22,6 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->alias([
+            'admin' => \App\Http\Middleware\EnsureAdmin::class,
             'not.admin' => \App\Http\Middleware\EnsureNotAdmin::class,
         ]);
     })
