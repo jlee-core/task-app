@@ -1,0 +1,79 @@
+.task-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.page-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #111827;
+
+    margin-bottom: 28px;
+
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 12px;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.task-card {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #cbd5e1;
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.task-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+
+    color: #1f2937;
+
+    margin-bottom: 12px;
+}
+
+.task-card p {
+    font-size: 15px;
+    line-height: 1.7;
+
+    color: #4b5563;
+}
+
+.empty-message {
+    text-align: center;
+
+    padding: 32px;
+
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+
+    background: #f9fafb;
+
+    color: #6b7280;
+
+    font-size: 15px;
+}

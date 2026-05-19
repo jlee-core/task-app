@@ -6,37 +6,39 @@
     </x-slot>
     <div class="user-list">
         @foreach ($users as $user)
+        <a
+            href="{{ route('admin.search', ['user' => $user->id]) }}"
+            class="user-card-link">
+            <div class="user-card">
 
-        <div class="user-card">
+                <div class="user-info">
 
-            <div class="user-info">
+                    <span class="{{ $user->is_online ? 'status-online' : 'status-offline' }}">
+                    </span>
 
-                <span class="{{ $user->is_online ? 'status-online' : 'status-offline' }}">
-                </span>
+                    <div>
+                        <h3 class="user-name">
+                            {{ $user->name }}
+                        </h3>
 
-                <div>
-                    <h3 class="user-name">
-                        {{ $user->name }}
-                    </h3>
+                        <p class="user-email">
+                            {{ $user->email }}
+                        </p>
+                    </div>
+                </div>
 
-                    <p class="user-email">
-                        {{ $user->email }}
+                <div class="user-login">
+                    <p class="login-label">
+                        最終ログイン
+                    </p>
+
+                    <p class="login-time">
+                        {{ optional($user->last_seen_at)->diffForHumans() }}
                     </p>
                 </div>
+
             </div>
-
-            <div class="user-login">
-                <p class="login-label">
-                    最終ログイン
-                </p>
-
-                <p class="login-time">
-                    {{ optional($user->last_seen_at)->diffForHumans() }}
-                </p>
-            </div>
-
-        </div>
-
+        </a>
         @endforeach
     </div>
 </x-app-layout>

@@ -36,6 +36,12 @@ new class extends Component
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                <!-- 検索画面 Link -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.search')" :active="request()->routeIs('admin.search')" wire:navigate>
+                        {{ __('検索') }}
+                    </x-nav-link>
+                </div>
                 @else
                 <!-- タスク一覧 Link -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">

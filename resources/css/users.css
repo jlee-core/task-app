@@ -71,3 +71,19 @@
     font-size: 14px;
     color: #4b5563;
 }
+
+.user-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.user-card {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.user-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
