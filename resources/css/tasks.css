@@ -1,27 +1,96 @@
 .task-list {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 24px auto;
+    max-width: 800px;
 }
 
 .task-item {
-    border: 1px solid #e5e7eb;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    background: #fff;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .task-title {
-    font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+
+    margin-bottom: 10px;
 }
 
 .task-desc {
-    color: #6b7280;
+    font-size: 15px;
+    color: #4b5563;
+
+    margin-bottom: 14px;
+    line-height: 1.6;
 }
 
 .task-meta {
-    font-size: 13px;
-    color: #374151;
+    font-size: 14px;
+    color: #6b7280;
+
+    margin-bottom: 6px;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+.task-edit-btn,
+.task-delete-btn {
+    display: inline-block;
+
+    padding: 8px 14px;
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: background 0.2s ease;
+}
+
+/* 編集ボタン */
+.task-edit-btn {
+    background: #2563eb;
+    color: #fff;
+}
+
+.task-edit-btn:hover {
+    background: #1d4ed8;
+}
+
+/* 削除ボタン */
+.task-delete-btn {
+    background: #dc2626;
+    color: #fff;
+
+    border: none;
+    cursor: pointer;
+}
+
+.task-delete-btn:hover {
+    background: #b91c1c;
+}
+
+.delete__button {
+    margin: 0;
 }
