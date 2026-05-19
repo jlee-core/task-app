@@ -15,16 +15,18 @@ class AuthController extends Controller
     {
         $users = User::with('tokens')->get()->map(function ($user) {
 
-            $isLogin = $user->tokens->isNotEmpty();
+            $isActive = $user->last_seen_at &&
+                $user->last_seen_at->gt(now()->subMinutes(5));
 
             return [
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-                'is_login' => $isLogin,
-                'status' => $isLogin
-                    ? 'ログイン中'
-                    : '未ログイン',
+                'isActive' => $isActive,
+                'status' => $isActive
+                    ? 'オンライン'
+                    : 'オフライン',
+                'last_seen_at' => $user->last_seen_at,
             ];
         });
 
@@ -48,7 +50,7 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
             'is_admin' => $validated['is_admin'] ?? false,
         ]);
-        
+
         return response()->json([
             'message' => 'ユーザー登録が完了しました。',
             'user' => [
@@ -66,7 +68,7 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
         ]);
-
+        
         $user = User::where('email', $validated['email'])->first();
 
         if (! $user || ! Hash::check($validated['password'], $user->password)) {
@@ -74,6 +76,10 @@ class AuthController extends Controller
                 'email' => ['認証情報が正しくありません。'],
             ]);
         }
+
+        $user->update([
+            'last_seen_at' => now(),
+        ]);
 
         $token = $user->createToken('api-token')->plainTextToken;
 

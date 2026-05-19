@@ -13,13 +13,14 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
+        $users = [];
+        $tasks = [];
+
         if ($user->is_admin) {
             $users = User::latest()->get();
             $tasks = Task::latest()->get();
-
-            return view('admin.dashboard', compact('users', 'tasks'));
         }
 
-        return view('dashboard');
+        return view('dashboard', compact('users', 'tasks'));
     }
 }
