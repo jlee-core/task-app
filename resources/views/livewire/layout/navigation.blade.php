@@ -28,6 +28,7 @@ new class extends Component
                     </a>
                 </div>
 
+                @if(Auth::user()->is_admin)
                 <!-- Navigation Links -->
                 <!-- Dashbord Link -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -35,7 +36,7 @@ new class extends Component
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-
+                @else
                 <!-- タスク一覧 Link -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')" wire:navigate>
@@ -43,12 +44,15 @@ new class extends Component
                     </x-nav-link>
                 </div>
 
-                <!-- タスク追加 Link -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('tasks.create')" :active="request()->routeIs('tasks.create')" wire:navigate>
+                    <x-nav-link
+                        :href="route('tasks.create')"
+                        :active="request()->routeIs('tasks.create')"
+                        wire:navigate>
                         {{ __('タスク追加') }}
                     </x-nav-link>
                 </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

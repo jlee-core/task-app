@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\DashboardController;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
+Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
@@ -14,7 +15,7 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::resource('tasks', TaskController::class)
-    ->middleware('auth')
+    ->middleware(['auth', 'not.admin'])
     ->except(['show']);
 
 require __DIR__ . '/auth.php';
