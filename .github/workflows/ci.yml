@@ -50,6 +50,14 @@ jobs:
           DB_PASSWORD: root
         run: php artisan migrate --force
 
+      - name: Debug project structure
+        run: |
+          pwd ls -R resources/views
+
+      - name: Run tests with logs
+        run: |
+          php artisan test --debug || cat storage/logs/laravel.log
+        
       - name: Run tests
         env:
           APP_ENV: testing
