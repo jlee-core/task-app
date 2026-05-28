@@ -4,7 +4,7 @@
     <input
         type="text"
         wire:model.live="keyword"
-        placeholder="ユーザー名 or UUID"
+        placeholder="ユーザー名 "
         class="search-input">
 
     {{-- 候補一覧 --}}

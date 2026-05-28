@@ -49,15 +49,6 @@ jobs:
           echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
           echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
 
-          MAIL_MAILER=smtp
-          MAIL_SCHEME=null
-          MAIL_HOST=mailpit
-          MAIL_PORT=1025
-          MAIL_USERNAME=null
-          MAIL_PASSWORD=null
-          MAIL_FROM_ADDRESS="hello@example.com"
-          MAIL_FROM_NAME="Laravel"
-
       - name: Run tests
         env:
           DB_CONNECTION: mysql
