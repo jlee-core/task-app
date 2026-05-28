@@ -4,7 +4,7 @@ on:
   push:
     branches: [develop]
   pull_request:
-    branches: []
+    branches: [develop]
 
 jobs:
   test:
@@ -15,7 +15,8 @@ jobs:
         image: mysql:8.4
         env:
           MYSQL_DATABASE: laravel_test
-          MYSQL_ROOT_PASSWORD: root
+          # 意図的なエラーを出すためのpassword変更
+          MYSQL_ROOT_PASSWORD: root123
         ports:
           - 3306:3306
         options: >-
@@ -36,6 +37,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v5
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist
 
